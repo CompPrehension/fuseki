@@ -1,0 +1,56 @@
+PREFIX :        <#>
+PREFIX fuseki:  <http://jena.apache.org/fuseki#>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX tdb2:    <http://jena.apache.org/2016/tdb#>
+PREFIX ja:      <http://jena.hpl.hp.com/2005/11/Assembler#>
+
+# See Also:  https://jena.apache.org/documentation/fuseki2/fuseki-configuration.html
+
+[] rdf:type fuseki:Server ;
+   fuseki:services (
+     :service_tdb2_1
+     :service_tdb2_2
+   ) .
+
+
+# db №1
+
+<#service_tdb2_1> rdf:type fuseki:Service ;
+    rdfs:label                      "TDB2 Service 1 (RW)" ;
+    fuseki:name                     "control_flow" ;
+    fuseki:serviceQuery             "query" ;
+    fuseki:serviceQuery             "sparql" ;
+    fuseki:serviceUpdate            "update" ;
+    fuseki:serviceUpload            "upload" ;
+    fuseki:serviceReadWriteGraphStore      "data" ;
+    # A separate read-only graph store endpoint:
+    fuseki:serviceReadGraphStore       "get" ;
+    fuseki:dataset           <#tdb_dataset_readwrite_1> ;
+    .
+
+
+<#tdb_dataset_readwrite_1> rdf:type      tdb2:DatasetTDB2 ;
+    tdb2:location "control_flow" ;
+    ## tdb2:unionDefaultGraph true ;
+     .
+
+# db №2
+
+<#service_tdb2_2> rdf:type fuseki:Service ;
+    rdfs:label                      "TDB2 Service 2 (RW)" ;
+    fuseki:name                     "expression" ;
+    fuseki:serviceQuery             "query" ;
+    fuseki:serviceQuery             "sparql" ;
+    fuseki:serviceUpdate            "update" ;
+    fuseki:serviceUpload            "upload" ;
+    fuseki:serviceReadWriteGraphStore      "data" ;
+    # A separate read-only graph store endpoint:
+    fuseki:serviceReadGraphStore       "get" ;
+    fuseki:dataset           <#tdb_dataset_readwrite_2> ;
+    .
+
+<#tdb_dataset_readwrite_2> rdf:type      tdb2:DatasetTDB2 ;
+    tdb2:location "expression" ;
+    ## tdb2:unionDefaultGraph true ;
+     .
