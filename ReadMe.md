@@ -58,7 +58,7 @@
    * c современным _TDB2_ хранилищем по умолчанию
    * со включенной возможностью делать запросы **SPARQL Update**:
    
-   **Вариант 1**, с использованием временной переменной окружения (Вариант для Linux). 
+   **Вариант 1**, с использованием временной переменной окружения (Вариант для **Linux**). 
    ```bash
    $ export FUSEKI_BASE=~/dev/db/tdb
    $ ~/dev/db/apache-jena-fuseki-4.2.0/fuseki-server --port=6515 -q --tdb2 --loc=$FUSEKI_BASE --update /
@@ -67,7 +67,16 @@
    ```bash
    $ ~/dev/db/apache-jena-fuseki-4.2.0/fuseki-server --port=6515 -q --tdb2 --loc=~/dev/db/tdb --update /
    ```
+   **Вариант 3** - запуск под **Windows**. 
+   ```cmd
+   cd c:\Work\fuseki-dir\apache-jena-fuseki-4.2.0
+   
+   set FUSEKI_BASE=c:\Work\fuseki-dir\tdb
+   fuseki-server --port=6515 -q --tdb2  --update
+   ```
+
    После этого сервер работает в текущей консоли, пока не буде нажато сочетание Ctrl+С или консоль будет закрыта.
+   
 
 6. Проверяем, что всё работает. 
    Заходим на `http://localhost:6515/` - должны увидеть веб-интерфейс локального сервера Fuseki, где есть возможность:
